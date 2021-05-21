@@ -1,10 +1,11 @@
-
+import os
 
 class Config:
   JSON_AS_ASCII = False
   JSON_SORT_KEYS = False
   UPLOAD_FOLDER = 'uploads/'
   SQLALCHEMY_TRACK_MODIFICATIONS = False
+  REPORTS_FOLDER = 'reportsfolder/'
 
   @staticmethod
   def init_app(app):
@@ -13,6 +14,7 @@ class Config:
 
 class DevelopmentConfig(Config):
   DEBUG = True
+  SQLALCHEMY_DATABASE_URI = os.getenv('DATA_BASE')
 
 
 class TestingConfig(Config):

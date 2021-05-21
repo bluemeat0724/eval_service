@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+</head>
+<body>
+<p align=center style='text-align:center'>
+    <b>
+创新能力诊断报告
+</b>
+</p>
+<p align=center><b>{{ companyname }}</b></p>
+
+
+<p>一、公司简介</p>
+<p>企业名称 : {{ companyname }}</p>
+<p>行业：{{ industry }}</p>
+<p>主营简介：{{ business }}</p>
+<p>核心产品：{{ coreproduct }}</p>
+<p>二、诊断结果</p>
+
+
+<p align="middle">
+    <img src="data:image/jpeg;base64,{{ base64_data }}" height="300" width="600">
+</p>
+
+</body>
+</html>

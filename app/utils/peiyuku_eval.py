@@ -62,7 +62,7 @@ class InnovationValuation:
         # 读取问卷答案
         self.content = json.loads(data) if type(data) != dict else data
         # 问卷参数，数据类型检查
-        self.companyname = self.paramcheck(self.content.get('name'), str)  # 1
+        self.companyname = self.paramcheck(self.content.get('companyname'), str)  # 1
         self.industry = self.paramcheck(self.content.get('industry'), str)  # 2
         self.business = self.paramcheck(self.content.get('business'), str)
         self.coreproduct = self.paramcheck(self.content.get('coreproduct'), str)
@@ -209,6 +209,7 @@ class InnovationValuation:
         self.questionbase.append(self.totalresearch)
         self.questiondescription.append('研发投入金额累计')
 
+    #计算等级
     def getpoints(self, data, ranges, base, reverse=False):
         points = 5
         for i in [r * base for r in ranges]:
@@ -220,6 +221,7 @@ class InnovationValuation:
                     points -= 1
         return points
 
+    #计算分值
     def questionvalue(self, index, data):
         ranges = list(self.basedf[[5, 4, 3, 2, 1]].loc[index])
         base = self.basedf.loc[index]['基准']
@@ -239,6 +241,11 @@ class InnovationValuation:
         for i in self.questionindexes:
             self.sheetanswer.append(self.questionvalue(i, self.questionbase[i]))
         self.sheetanswerdict={i:self.sheetanswer[i] for i in range(len(self.sheetanswer))}
+        self.total_score=sum(self.sheetanswerdict.values())
+        self.operational_score=sum(list(self.sheetanswerdict.values())[0:4])
+        self.techinvest_score=sum(list(self.sheetanswerdict.values())[4:7])
+        self.research_score=sum(list(self.sheetanswerdict.values())[7:])
+
         return self.sheetanswerdict
 
     def answersheet(self):

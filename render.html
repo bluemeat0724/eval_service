@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
+</head>
+<body>
+    <div id="6dbb612f1d0f403da2941f647179ce8c" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_6dbb612f1d0f403da2941f647179ce8c = echarts.init(
+            document.getElementById('6dbb612f1d0f403da2941f647179ce8c'), 'white', {renderer: 'canvas'});
+        var option_6dbb612f1d0f403da2941f647179ce8c = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#4587E7"
+    ],
+    "series": [
+        {
+            "type": "radar",
+            "name": "\u79d1\u6280\u521b\u65b0\u8bc4\u4f30",
+            "data": [
+                [
+                    8,
+                    2,
+                    9,
+                    10,
+                    5
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "itemStyle": {
+                "normal": {}
+            },
+            "lineStyle": {
+                "show": true,
+                "width": 1,
+                "opacity": 1,
+                "curveness": 0,
+                "type": "solid"
+            },
+            "areaStyle": {
+                "opacity": 0.8
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u79d1\u6280\u521b\u65b0\u8bc4\u4f30"
+            ],
+            "selected": {
+                "\u79d1\u6280\u521b\u65b0\u8bc4\u4f30": true
+            }
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "radar": {
+        "indicator": [
+            {
+                "name": "\u53d1\u5c55",
+                "max": 10
+            },
+            {
+                "name": "\u76c8\u5229",
+                "max": 10
+            },
+            {
+                "name": "\u7814\u53d1",
+                "max": 10
+            },
+            {
+                "name": "\u4eba\u624d",
+                "max": 10
+            },
+            {
+                "name": "\u6280\u672f\u50a8\u5907",
+                "max": 10
+            }
+        ],
+        "name": {
+            "textStyle": {}
+        },
+        "splitLine": {
+            "show": true,
+            "lineStyle": {
+                "show": true,
+                "width": 1,
+                "opacity": 1,
+                "curveness": 0,
+                "type": "solid"
+            }
+        },
+        "splitArea": {
+            "show": true,
+            "areaStyle": {
+                "opacity": 0
+            }
+        },
+        "axisLine": {
+            "show": true,
+            "onZero": true,
+            "onZeroAxisIndex": 0
+        }
+    }
+};
+        chart_6dbb612f1d0f403da2941f647179ce8c.setOption(option_6dbb612f1d0f403da2941f647179ce8c);
+    </script>
+</body>
+</html>
