@@ -284,7 +284,6 @@ class InnovationValuation:
     def getsheetanswers(self):
         self.sheetanswer = []
         for i in self.questionindexes:
-            print(i)
             self.sheetanswer.append(self.questionvalue(i, self.questionbase[i]))
         self.sheetanswerdict={i:self.sheetanswer[i] for i in range(len(self.sheetanswer))}
         self.total_score=sum(self.sheetanswerdict.values())
