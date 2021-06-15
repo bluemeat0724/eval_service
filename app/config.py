@@ -13,18 +13,18 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-  DEBUG = True
-  SQLALCHEMY_DATABASE_URI = os.getenv('DATA_BASE')
+      DEBUG = True
+      SQLALCHEMY_DATABASE_URI = os.getenv('DATA_BASE')
 
 
 class TestingConfig(Config):
-  TESTING = True
-  # SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:root@localhost:3306/report'
+    TESTING = True
+    # SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:root@localhost:3306/report'
 
 
 class ProductionConfig(Config):
     DEBUG = False
-  # SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:NetC@123@localhost:3306/report'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://ryan:Rjy1958113@rm-uf68r3ut1z0eao1ezko.mysql.rds.aliyuncs.com:3306/questionnaire'
 
 
 config = {'development': DevelopmentConfig,

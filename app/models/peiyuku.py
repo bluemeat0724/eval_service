@@ -5,5 +5,6 @@ class Answers(Base):
     __tablename__ = 'answers'
     answer = Column(JSON)
     code = Column(String(64))
+    name = Column(String(64))
 
 

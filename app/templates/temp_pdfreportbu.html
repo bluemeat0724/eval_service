@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="UTF-8" /> 
+  <title>Test</title> 
+  <style>
+		h2{
+			margin: 50px 0 0 0;
+		}
+		.tb{
+			border: none;
+			border-right: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+		.tb td, .tb th{
+			border: none;
+			background-color: white;
+			border-top: 2px solid black;
+			border-left: 2px solid black;
+		}
+	</style> 
+ </head> 
+ <body style="padding: 0;">
+  <div style="width: 800px; background-color: white; margin:30px auto; padding: 30px;"> 
+   <h1 align="center" style="text-align:center">创新能力诊断报告</h1> 
+   <h2>一、公司简介</h2> 
+   <p>企业名称 : {{ companyname }}</p> 
+   <p>行业：{{ industry }}</p> 
+   <p>主营简介：{{ business }}</p> 
+   <p>核心产品：{{ coreproduct }}</p> 
+   <h2>二、创新能力评估<br /></h2> 
+   <p>通过诊断评估，{{ companyname }}的技创新能力评价结果为{{ total_score }}分。<br> 其中发展经营能力得分为{{ operational_score }}分，满分40分；<br> 科技创新研发投入评价得分为{{ techinvest_score }}分，满分40分，；<br> 科技创新研发能力得分为{{ research_score }}分，满分40分。<br /> </p>
+   <p> {% if total_score>=70 %} 根据创新能力诊断评估结果，{{ companyname }}整体创新能力保持良好水平，且创新潜力较大，未来发展前景广阔，可作为培育库重点培育和发展的企业； {% elif total_score>=60 %} 根据创新能力诊断评估结果，{{ companyname }}整体创新能力水平一般，但发展潜力较好，可以需要根据其具体情况匹配资源，提前布局企业创新能力的提升； {% else %} 根据创新能力诊断评估结果，{{ companyname }}整体创新能力水平还有较大的提升空间，需要提前布局企业创新能力的提升。 {% endif %} {% if strategicind!=1 %} </p>
+   <p>但目前企业业务分类与科创版指定行业分类不服，建议咨询相关专业人士评估当前技术情况。</p> {% endif %}
+   <p></p> 
+   <h3>评估详情</h3> 
+   <div align="center"> 
+    <table border="1" cellpadding="0" cellspacing="0" width="760" class="tb"> 
+     <tbody> 
+      <tr id="r0"> 
+       <th>创新指标</th> 
+       <th>总分</th> 
+       <th>评分项</th> 
+       <th>项目分值</th> 
+       <th>指标数据</th> 
+       <th>得分</th> 
+      </tr> 
+      <tr height="20" id="r1"> 
+       <td>发展经营情况</td> 
+       <td rowspan="4">20</td> 
+       <td>最近一年营业收入</td> 
+       <td>5</td> 
+       <td>{{questionbase[0]}}万元</td> 
+       <td>{{points[0]}}</td> 
+      </tr> 
+      <tr id="r2"> 
+       <td>最近3年营业收入复合增长率</td> 
+       <td>5</td> 
+       <td>{{ questionbase[1]*100 }}%</td> 
+       <td>{{points[1]}}</td>
+       <td></td>
+      </tr> 
+      <tr id="r3"> 
+       <td>最近两年净利润累计</td> 
+       <td>5</td> 
+       <td>{{questionbase[2]}}万元</td> 
+       <td>{{points[2]}}</td> 
+       <td></td>
+      </tr> 
+      <tr id="r4"> 
+       <td>最近两年净利润是否均为正</td> 
+       <td>5</td> 
+       <td>{% if questionbase[3]==5 %} 是 {% elif questionbase[3]==3 %} 一年为正 {% else %} 否 {% endif %}</td>  
+       <td>{{points[3]}}</td> 
+       <td></td>
+      </tr> 
+      <tr id="r5"> 
+       <td>科技创新研发投入</td> 
+       <td>40</td> 
+       <td>最近3年累计研发投入占最近3年累计营业收入比例</td> 
+       <td>15</td> 
+       <td>{{ questionbase[4]*100|round(1) }}%</td> 
+       <td>{{points[4]}}</td> 
+      </tr> 
+      <tr id="r6"> 
+       <td>最近3年研发投入金额累计</td> 
+       <td>10</td> 
+       <td>{{questionbase[5]}}万元</td> 
+       <td>{{points[5]}}</td> 
+       <td></td>
+       <td></td>
+      </tr> 
+      <tr id="r7"> 
+       <td>当年R&D人员占就业人员比重</td>
+       <td>10</td> 
+       <td>{{questionbase[6]*100}}%</td> 
+       <td>{{points[6]}}</td> 
+       <td></td>
+       <td></td>
+      </tr> 
+      <tr id="r8"> 
+       <td>科技创新研发能力</td> 
+       <td rowspan="3">40</td> 
+       <td>企业发明专利申请量占专利申请量的比重</td> 
+       <td>10</td> 
+       <td>{{questionbase[7]*100}}%</td> 
+       <td>{{points[7]}}</td> 
+      </tr> 
+      <tr id="r9"> 
+       <td>企业主营业务收入的发明专利（含国防专利）数量</td> 
+       <td>10</td> 
+       <td>{{questionbase[8]}}个</td> 
+       <td>{{points[8]}}</td> 
+       <td></td>
+      </tr> 
+      <tr id="r10"> 
+       <td>技术水平</td> 
+       <td>10</td> 
+       <td>{{techlevel}}</td> 
+       <td>{{points[9]}}</td> 
+       <td></td>
+      </tr> 
+      <tr id="r11"> 
+       <td></td> 
+       <td></td> 
+       <td>前五大客户销售总额占当年销售额比值</td> 
+       <td>10</td> 
+       <td>{{questionbase[10]*100}}%</td> 
+       <td>{{points[10]}}</td> 
+      </tr> 
+      <tr id="r12"> 
+       <td colspan="6"><strong>总分</strong></td> 
+      </tr> 
+     </tbody> 
+    </table> 
+   </div> 
+   <h2>三、科创属性评估<br /></h2> 
+   <p>依照《上海证券交易所科创板企业发行上市申报及推荐暂行规定（2021年4月修订）》（以下简称《规定》），对企业科创属性进行评定。</p> 
+   <p>http://www.sse.com.cn/star/lawandrules/lawandrules/marketrules/c/c_20210416_5379988.shtml</p> 
+   <br /> 
+   <h3>行业要求</h3> 
+   <p>申报科创板发行上市的发行人，应当属于《规定》中所要求产业</p> 
+   <p>科创板定位的高新技术产业和战略新兴产业包含：<br /> （一）新一代信息技术领域，主要包括半导体和集成电路、电子信息、下一代信息网络、人工智能、大数据、云计算、软件、互联网、物联网和智能硬件等；<br /> （二）高端装备领域，主要包括智能制造、航空航天、先进轨道交通、海洋工程装备及相关服务等；<br /> （三）新材料领域，主要包括先进钢铁材料、先进有色金属材料、先进石化化工新材料、先进无机非金属材料、高性能复合材料、前沿新材料及相关服务等；<br /> （四）新能源领域，主要包括先进核电、大型风电、高效光电光热、高效储能及相关服务等；<br /> （五）节能环保领域，主要包括高效节能产品及设备、先进环保技术装备、先进环保产品、资源循环利用、新能源汽车整车、新能源汽车关键零部件、动力电池及相关服务等；<br /> （六）生物医药领域，主要包括生物制品、高端化学药、高端医疗设备与器械及相关服务等；<br /> （七）符合科创板定位的其他领域<br /> </p> {% if strategicind==1 %} 
+   <p>{{ companyname }}行业分类为{{ industry }}，符合科创板定位的高新技术产业和战略性新兴产业。</p> {% else %} 
+   <p>{{ companyname }}行业分类为{{ industry }}，不属于科创板定位的高新技术产业和战略性新兴产业。</p> {% endif %} 
+   <p></p> 
+   <h3>4项指标要求</h3> 
+   <p>对同时符合下列4项指标的企业，如符合规定行业要求，支持和鼓励企业科创版发行申报</p> 
+   <p>1.最近3年累计研发投入占最近3年累计营业收入比例5%以上，或者最近3年研发投入金额累计在6000万元以上；其中，软件企业最近3年累计研发投入占最近3年累计营业收入比例10%以上</p> 
+   <p style="margin-left: 2em;"> {{ iv.companyname }}累计研发投入为{{ iv.researchratio*100 }}%<br /> 近三年累计研发金额为{{ iv.totalresearch }}<br /> {% if iv.softwareindustry==1 %} 属于软件行业<br /> {% endif %} 综合判断,企业{% if iv.researchinvestrequirement==1 %}达到《规定》对研发投入的要求。{% else %}未达到《规定》对研发投入的要求。{% endif %} </p> 
+   <p>2.研发人员占当年员工总数的比例不低于10%</p> 
+   <p style="margin-left: 2em;">研发人员占比为{{ iv.researcherratio*100 }}%，{% if iv.researchstaffrequirement==1 %}达到{% else %}未达到{% endif %}《规定》对研发人员的相关要求。</p> 
+   <p>3.形成主营业务收入的发明专利（含国防专利）5项以上，软件企业除外</p> 
+   <p style="margin-left: 2em;">主营业务专利数</p> 
+   <p>4.最近3年营业收入复合增长率达到20%，或者最近一年营业收入金额达到3亿元。</p> 
+   <p align="middle"> <img src="data:image/jpeg;base64,{{ base64_data }}" height="300" width="600" /> </p> 
+  </div>  
+ </body>
+</html>

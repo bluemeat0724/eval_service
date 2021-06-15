@@ -4,6 +4,7 @@ import json
 from flask import jsonify
 import pdfkit
 import uuid
+import os
 
 from app.utils.peiyuku_eval import InnovationValuation
 import base64
@@ -19,7 +20,11 @@ def peiyukusheet():
     answerdata = request.data.decode()
     with db.auto_commit():
         code = uuid.uuid4().hex
-        answer = Answers(answer=answerdata,code=code)
+        try:
+            name=json.loads(answerdata).get('companyname')
+        except:
+            name=None
+        answer = Answers(answer=answerdata,code=code,name=name)
         db.session.add(answer)
     return jsonify({'code':code})
 
@@ -33,23 +38,38 @@ def posttest(code):
     #计算评分
     iv = InnovationValuation(answerdict)
     iv.getsheetanswers()
-
-
+    #四项指标
+    iv.getfourrequirementsstatus()
     #生成报告
-    with open(r"app\reportsfolder\image.png", "rb") as f:  # 转为二进制格式
-        base64_data = base64.b64encode(f.read()).decode()
 
-    return render_template('temp_pdfreport.html',
+    #符合条件
+    successpath = os.path.join(os.path.dirname(__file__), 'success.png')
+    # with open(r"app\reportsfolder\success.png", "rb") as f:  # 转为二进制格式
+    with open(successpath, "rb") as f:  # 转为二进制格式
+        successimage = base64.b64encode(f.read()).decode()
+    #存疑
+    warningpath = os.path.join(os.path.dirname(__file__), 'warning.png')
+    # with open(r"app\reportsfolder\warning.png", "rb") as f:  # 转为二进制格式
+    with open(warningpath, "rb") as f:  # 转为二进制格式
+        warningimage = base64.b64encode(f.read()).decode()
+
+    return render_template('temp_pdfpage.html',
                            companyname=answerdict.get('companyname'),
                            industry=answerdict.get('industry'),
-                           base64_data=base64_data,
+                           strategicind=iv.strategic_ind,
+                           successimage=successimage,
+                           warningimage=warningimage,
                            business=answerdict.get('business'),
                            coreproduct=answerdict.get('coreproduct'),
                            total_score=iv.total_score,
                            operational_score = iv.operational_score,
                            techinvest_score = iv.techinvest_score,
-                           research_score = iv.research_score
-
+                           research_score = iv.research_score,
+                           questionbase = iv.questionbase,
+                           points = iv.sheetanswerdict,
+                           techlevel = iv.techlevel,
+                           iv=iv,
+                           answercode=answercode
                            )
 
 
@@ -61,27 +81,41 @@ def getreportfile(code):
     answer = Answers.query.filter_by(code=answercode).first()
     answerdict = json.loads(answer.answer)
 
-    #计算评分
+    # 计算评分
     iv = InnovationValuation(answerdict)
     iv.getsheetanswers()
-    render_dict = {}
-    render_dict['companyname'] = iv.companyname
-    render_dict['industry'] = iv.industry
+    # 四项指标
+    iv.getfourrequirementsstatus()
 
-    #渲染报告
-    with open(r"app\reportsfolder\image.png", "rb") as f:  # 转为二进制格式
-        base64_data = base64.b64encode(f.read()).decode()
+    # 符合条件
+    successpath = os.path.join(os.path.dirname(__file__), 'success.png')
+    # with open(r"app\reportsfolder\success.png", "rb") as f:  # 转为二进制格式
+    with open(successpath, "rb") as f:  # 转为二进制格式
+        successimage = base64.b64encode(f.read()).decode()
+    # 存疑
+    warningpath = os.path.join(os.path.dirname(__file__), 'warning.png')
+    # with open(r"app\reportsfolder\warning.png", "rb") as f:  # 转为二进制格式
+    with open(warningpath, "rb") as f:  # 转为二进制格式
+        warningimage = base64.b64encode(f.read()).decode()
+
+
 
     rendered = render_template('temp_pdfreport.html',
                                companyname=answerdict.get('companyname'),
                                industry=answerdict.get('industry'),
-                               base64_data=base64_data,
+                               strategicind=iv.strategic_ind,
+                               successimage=successimage,
+                               warningimage=warningimage,
                                business=answerdict.get('business'),
                                coreproduct=answerdict.get('coreproduct'),
                                total_score=iv.total_score,
                                operational_score=iv.operational_score,
                                techinvest_score=iv.techinvest_score,
-                               research_score=iv.research_score
+                               research_score=iv.research_score,
+                               questionbase=iv.questionbase,
+                               points=iv.sheetanswerdict,
+                               techlevel=iv.techlevel,
+                               iv=iv
                                )
     options = {
         'page-size': 'A4',
@@ -94,7 +128,7 @@ def getreportfile(code):
     #返回下载报告
     response = make_response(pdfreport)
     response.headers['Content-Type'] = 'application/pdf'
-    outputfilename='report.pdf'
+    outputfilename='Innovation_eval.pdf'
     response.headers['Content-Disposition'] = 'attachment;filename={}'.format(outputfilename)
     return response
 

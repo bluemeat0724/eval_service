@@ -1,146 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Test</title>
+    <meta charset="UTF-8"/>
+    <title>创新能力诊断</title>
+    <style>
+        h2 {
+            margin: 50px 0 0 0;
+        }
 
+        p{
+            margin: 10px 0;
+        }
+
+        label{
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .tb {
+            border: none;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+        .tb td, .tb th {
+            border: none;
+            background-color: white;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+
+        }
+
+        .tb .bg,.tb th{
+            text-align: center;
+        }
+
+        .tb th {
+            border-bottom: 1px solid black;
+            font-weight: bold;
+        }
+
+        .tb .bg {
+            background-color: #F2F2F2;
+            font-weight: bold;
+        }
+
+        .success {
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 20px;
+            padding-left: 1em;
+        }
+        .wid-1200 {
+          width: 1200px;
+          margin: 0 auto;
+        }
+        .main-wp {
+          padding: 50px 0 120px;
+        }
+        .inner {
+            -webkit-appearance: none;
+            background-color: #FFF;
+            background-image: none;
+            border-radius: 4px;
+            border: 1px solid #DCDFE6;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #606266;
+            display: inline-block;
+            font-size: inherit;
+            height: 40px;
+            line-height: 40px;
+            outline: 0;
+            padding: 0 15px;
+            -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            width: 100%;
+        }
+    </style>
 </head>
-<body>
-<p align=center style='text-align:center'>
-    <b>
-创新能力诊断报告
-</b>
-</p>
-<div
-<p>一、公司简介</p>
-<p>企业名称 : {{ companyname }}</p>
-<p>行业：{{ industry }}</p>
-<p>主营简介：{{ business }}</p>
-<p>核心产品：{{ coreproduct }}</p>
-<p>二、诊断结果<br>
-科创板定位的高新技术产业和战略新兴产业有：<br>
-（一）新一代信息技术领域，主要包括半导体和集成电路、电子信息、下一代信息网络、人工智能、大数据、云计算、软件、互联网、物联网和智能硬件等；<br>
-（二）高端装备领域，主要包括智能制造、航空航天、先进轨道交通、海洋工程装备及相关服务等；<br>
-（三）新材料领域，主要包括先进钢铁材料、先进有色金属材料、先进石化化工新材料、先进无机非金属材料、高性能复合材料、前沿新材料及相关服务等；<br>
-（四）新能源领域，主要包括先进核电、大型风电、高效光电光热、高效储能及相关服务等；<br>
-（五）节能环保领域，主要包括高效节能产品及设备、先进环保技术装备、先进环保产品、资源循环利用、新能源汽车整车、新能源汽车关键零部件、动力电池及相关服务等；<br>
-（六）生物医药领域，主要包括生物制品、高端化学药、高端医疗设备与器械及相关服务等；<br>
-</p>
-<p>{{ companyname }}属于{{ industry }}行业，符合科创板定位的高新技术产业和战略性新兴产业。</p>
-<p>通过诊断评估，{{ companyname }}的技创新能力评价结果为{{ total_score }}分。<br>
-    其中发展经营能力指标满分20分，评价得分为{{ operational_score }}分；<br>
-    科技创新研发投入指标满分40分，评价得分为{{ techinvest_score }}分；<br>
-    科技创新研发能力指标满分40分，评价得分为{{ research_score }}分。<br>
-<p>
-    {% if total_score >=70 %}
-    根据创新能力诊断评估结果，{{ companyname }}整体创新能力保持良好水平，且创新潜力较大，未来发展前景广阔，可作为培育库重点培育和发展的企业；
-    {% elif total_score>=60 %}
-    根据创新能力诊断评估结果，{{ companyname }}整体创新能力水平一般，但发展潜力较好，可以需要根据其具体情况匹配资源，提前布局企业创新能力的提升；
-    {% else %}
-    根据创新能力诊断评估结果，{{ companyname }}整体创新能力水平还有较大的提升空间，需要提前布局企业创新能力的提升。
-    {% endif %}
-</p>
-<p>三、评估详情</p>
-<div align="center">
-    <table border="1" cellpadding="0" cellspacing="0" width="759" >
- <colgroup><col width="143" style="mso-width-source:userset;width:107.25pt">
- <col width="57" style="mso-width-source:userset;width:42.75pt">
- <col width="364" style="mso-width-source:userset;width:273pt">
- <col width="67" style="mso-width-source:userset;width:50.25pt">
- <col width="64" span="2" style="width:48pt">
- </colgroup><tbody><tr height="29" style="mso-height-source:userset;height:21.75pt" id="r0">
-<th height="27" class="x52" width="143" style="height:20.25pt;width:107.25pt;">创新指标</th>
-<th class="x53" width="57" style="width:42.75pt;">总分</th>
-<th class="x53" width="364" style="width:273pt;">评分项</th>
-<th class="x53" width="67" style="width:50.25pt;">项目分值</th>
-<th  width="100" style="width:48pt;">指标</th>
-<th class="x53" width="64" style="width:48pt;">评分</th>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r1">
-<td rowspan="4" height="79" class="x74" style="border-right:1px solid windowtext;border-bottom:1px solid windowtext;height:59.25pt;">发展经营情况</td>
-<td rowspan="4" height="79" class="x74" align="middle">20</td>
-<td class="x49">最近一年营业收入</td>
-<td class="x50"align="middle" >5</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r2">
-<td class="x49">最近3年营业收入复合增长率</td>
-<td class="x50" align="middle">5</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r3">
-<td class="x49">最近两年净利润累计</td>
-<td class="x50" align="middle">5</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r4">
-<td class="x49">最近两年净利润是否均为正</td>
-<td class="x50" align="middle">5</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r5">
-<td rowspan="3" height="59" class="x74" style="border-right:1px solid windowtext;border-bottom:1px solid windowtext;height:44.25pt;">科技创新研发投入</td>
-<td rowspan="3" height="59" class="x74" align="middle">40</td>
-<td class="x49">最近3年累计研发投入占最近3年累计营业收入比例</td>
-<td class="x50" align="middle">15</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r6">
-<td class="x49">最近3年研发投入金额累计</td>
-<td class="x50" align="middle">10</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r7">
-<td class="x49">当年R&amp;D人员占就业人员比重</td>
-<td class="x50" align="middle">10</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r8">
-<td rowspan="3" height="59" class="x74" style="border-right:1px solid windowtext;border-bottom:1px solid windowtext;height:44.25pt;">科技创新研发能力</td>
-<td rowspan="3" height="59" class="x74" align="middle">40</td>
-<td class="x49">企业发明专利申请量占专利申请量的比重</td>
-<td class="x50" align="middle">10</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r9">
-<td class="x49">企业主营业务收入的发明专利（含国防专利）数量</td>
-<td class="x50" align="middle">10</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r10">
-<td class="x49">技术水平</td>
-<td class="x50" align="middle">10</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r11">
-<td height="18" class="x51" style="height:13.5pt;"></td>
-<td class="x49"></td>
-<td class="x49">前五大客户销售总额占当年销售额比值</td>
-<td class="x50" align="middle">10</td>
-<td class="x49"></td>
-<td class="x49"></td>
- </tr>
- <tr height="20" style="mso-height-source:userset;height:15pt" id="r12">
-<td colspan="5" height="18" class="x71" align="middle"><strong>总分</strong></td>
-<td class="x49"></td>
- </tr>
-</tbody></table>
+<body style="padding: 0;font-size:19px;" >
+<div style="width: 800px; background-color: white; margin:30px auto; padding: 30px;">
+    <div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div style="page-break-after:always;"><h1 align="center" style="text-align:center">创新能力诊断</h1><h3 align="center">{{ companyname }}</h3></div>
+
+<!--        <div align="right" style="font-size: 10px"">*报告以科技创新能力问卷所提供数据信息为评估基础，对企业进行创新能力诊断。</div>-->
+        <h2>一、公司简介</h2>
+        <p>企业名称 : {{ companyname }}</p>
+        {% if iv.strategic_ind==1 %}
+        <p>行业：{{ industry }}</p>
+        {% endif %}
+        <p>主营简介：{{ business }}</p>
+        <p>核心产品：{{ coreproduct }}</p>
+        <h2>二、创新能力评估<br/></h2>
+        <p>通过诊断评估，{{ companyname }}的技创新能力评价结果为<b>{{ total_score }}分</b>。<br> 其中发展经营能力得分为<b>{{ operational_score }}分</b>，满分40分；<br>
+            科技创新研发投入评价得分为<b>{{ techinvest_score }}分</b>，满分40分，；<br>
+            科技创新研发能力得分为<b>{{ research_score }}</b>分，满分40分。<br/>
+        </p>
+        {% if total_score>=70 %}
+        <p><b> 根据创新能力诊断评估结果，{{ companyname }}整体创新能力保持良好水平，且创新潜力较大，未来发展前景广阔，可作为培育库重点培育和发展的企业；</b></p>
+        {% elif total_score>=60 %}
+        <p><b>根据创新能力诊断评估结果，{{ companyname }}整体创新能力水平一般，但发展潜力较好，可以需要根据其具体情况匹配资源，提前布局企业创新能力的提升；</b></p>
+        {% else %}
+        <p><b>根据创新能力诊断评估结果，{{ companyname }}整体创新能力水平还有较大的提升空间，需要提前布局企业创新能力的提升。</b></p>
+        {% endif %}
+
+        {% if strategicind!=1 %} </p>
+        <p><b>但目前企业业务分类与科创版指定行业分类存在不匹配，建议咨询相关专业人士评估当前技术情况。</b></p>
+        {% endif %}
+    </div>
+    <div>
+        <h3>评估详情</h3>
+        <div align="center">
+            <table border="1" cellpadding="0" cellspacing="0" width="760" class="tb">
+                <tbody>
+                <tr id="r0" style="font-size:18px">
+                    <th>创新指标</th>
+                    <th>总分</th>
+                    <th class="bg">指标评分</th>
+                    <th>评分项</th>
+                    <th class="bg">指标数据</th>
+                </tr>
+                <tr height="20" id="r1">
+                    <td rowspan="4">发展经营情况</td>
+                    <td rowspan="4" class="bg">20</td>
+                    <td rowspan="4" class="bg">{{ operational_score }}</td>
+                    <td>最近一年营业收入</td>
+                    <td class="bg">{{questionbase[0]}}万元</td>
+                </tr>
+                <tr id="r2">
+                    <td>最近3年营业收入复合增长率</td>
+                    <td class="bg">{{ questionbase[1]*100 }}%</td>
+                </tr>
+                <tr id="r3">
+                    <td>最近两年净利润累计</td>
+                    <td class="bg">{{questionbase[2]}}万元</td>
+                </tr>
+                <tr id="r4">
+                    <td>最近两年净利润是否均为正</td>
+                    <td class="bg">{% if questionbase[3]==5 %} 是 {% elif questionbase[3]==3 %} 一年为正 {% else %} 否 {%
+                        endif %}
+                    </td>
+                </tr>
+                <tr id="r5">
+                    <td rowspan="3">科技创新研发投入</td>
+                    <td rowspan="3" class="bg">40</td>
+                    <td rowspan="3" class="bg">{{ techinvest_score }}</td>
+                    <td>最近3年累计研发投入占最近3年累计营业收入比例</td>
+                    <td class="bg">{{ questionbase[4]*100|round(1) }}%</td>
+                </tr>
+                <tr id="r6">
+                    <td>最近3年研发投入金额累计</td>
+                    <td class="bg">{{questionbase[5]}}万元</td>
+                </tr>
+                <tr id="r7">
+                    <td>当年R&D人员占就业人员比重</td>
+                    <td class="bg">{{questionbase[6]*100}}%</td>
+                </tr>
+                <tr id="r8">
+                    <td rowspan="4">科技创新研发能力</td>
+                    <td rowspan="4" class="bg">40</td>
+                    <td rowspan="4" class="bg">{{ research_score }}</td>
+                    <td>企业发明专利申请量占专利申请量的比重</td>
+                    <td class="bg">{{questionbase[7]*100}}%</td>
+                </tr>
+                <tr id="r9">
+                    <td>企业主营业务收入的发明专利（含国防专利）数量</td>
+                    <td class="bg">{{questionbase[8]}}个</td>
+                </tr>
+                <tr id="r10">
+                    <td>技术水平</td>
+                    <td class="bg">{{techlevel}}</td>
+                </tr>
+                <tr id="r11">
+                    <td>前五大客户销售总额占当年销售额比值</td>
+                    <td class="bg">{{questionbase[10]*100}}%</td>
+                </tr>
+                <tr id="r12">
+                    <td colspan="4" style="text-align: center"><strong>总分</strong></td>
+                    <td colspan="1" class="bg">{{ total_score }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="page-break-before:always;">
+        <h2>三、科创属性评估<br/></h2>
+        <p>依照<a href="http://www.sse.com.cn/star/lawandrules/lawandrules/marketrules/c/c_20210416_5379988.shtml">《上海证券交易所科创板企业发行上市申报及推荐暂行规定（2021年4月修订）》</a>（以下简称《规定》），对企业科创属性进行评定。
+        </p>
+
+        <h3>3.1 行业要求</h3>
+        <div style="font-size:17px;padding-left: 2em">
+            申报科创板发行上市的发行人，应当属于《规定》中所要求产业<br>
+            科创板定位的高新技术产业和战略新兴产业包含：<br/>
+            （一）新一代信息技术领域，主要包括半导体和集成电路、电子信息、下一代信息网络、人工智能、大数据、云计算、软件、互联网、物联网和智能硬件等；<br/>
+            （二）高端装备领域，主要包括智能制造、航空航天、先进轨道交通、海洋工程装备及相关服务等；<br/>
+            （三）新材料领域，主要包括先进钢铁材料、先进有色金属材料、先进石化化工新材料、先进无机非金属材料、高性能复合材料、前沿新材料及相关服务等；<br/>
+            （四）新能源领域，主要包括先进核电、大型风电、高效光电光热、高效储能及相关服务等；<br/>
+            （五）节能环保领域，主要包括高效节能产品及设备、先进环保技术装备、先进环保产品、资源循环利用、新能源汽车整车、新能源汽车关键零部件、动力电池及相关服务等；<br/>
+            （六）生物医药领域，主要包括生物制品、高端化学药、高端医疗设备与器械及相关服务等；<br/>
+            （七）符合科创板定位的其他领域<br/>
+        </div>
+        {% if iv.strategic_ind==1 %}
+        <p>{{ companyname }}的行业分类为<b>{{ iv.indtypeone }}</b>，<b>属于科创板定位的高新技术产业和战略性新兴产业。</b><img src="data:image/jpeg;base64,{{ successimage }}" height="20" width="20"/></p> {% else %}
+        <p>
+            {{ companyname }}所属行业<b>不属于科创板定位的高新技术产业和战略性新兴产业。</b><img src="data:image/jpeg;base64,{{ warningimage }}"height="20" width="20"/>
+        </p>
+        {% endif %}
+        <p></p>
+        <h3>3.2 四项指标要求</h3>
+        <p>《规定》鼓励和支持符时符合下列4项指标的企业申报科创版发行上市。</p>
+        <p class="success">
+            （一）最近3年累计研发投入占最近3年累计营业收入比例5%以上，或者最近3年研发投入金额累计在6000万元以上；其中，软件企业最近3年累计研发投入占最近3年累计营业收入比例10%以上。
+        {% if iv.researchinvestrequirement==1 %}<img src="data:image/jpeg;base64,{{ successimage }}"height="20" width="20"/>
+            {% else %}
+            <img src="data:image/jpeg;base64,{{ warningimage }}" height="20" width="20"/>
+            {% endif %}
+        </p>
+        <p style="margin-left: 2em;">
+            {{ iv.companyname }}累计研发投入为{{ iv.researchratio*100 }}%；
+            近三年累计研发金额为{{ iv.totalresearch }}；
+            {% if iv.softwareindustry==1 %}
+            属于软件企业
+            {% endif %}
+            <br>综合判断上述指标，
+            {% if iv.researchinvestrequirement==1 %}<b>达到《规定》对研发投入的要求。</b>
+            {% else %}
+            未达到《规定》对<b>研发投入的要求。</b>
+            {% endif %}
+        </p>
+        <p class="success">
+            （二）研发人员占当年员工总数的比例不低于10%。
+            {% if iv.researchstaffrequirement==1 %}<img src="data:image/jpeg;base64,{{ successimage }}"height="20" width="20"/>
+        </p>
+        <p style="margin-left: 2em;">{{ iv.companyname }}的研发人员占比为{{ iv.researcherratio*100 }}%，
+            达到《规定》对<b>研发人员占比要求。</b>
+            {% else %}
+        <img src="data:image/jpeg;base64,{{ warningimage }}" height="20" width="20"/>
+            <p style="margin-left: 2em;">{{ iv.companyname }}的研发人员占比为{{ iv.researcherratio*100 }}%，
+            未达到《规定》对<b>研发人员占比要求。</b>
+            {% endif %}</p>
+        <p class="success">
+            （三）形成主营业务收入的发明专利（含国防专利）5项以上，软件企业除外。
+            {% if iv.mainpatentrequirement==1 %}
+            <img src="data:image/jpeg;base64,{{ successimage }}"height="20" width="20"/>
+            {% else %}
+        <img src="data:image/jpeg;base64,{{ warningimage }}" height="20" width="20"/>
+            {% endif %}</p>
+
+        <p style="margin-left: 2em;">
+            主营业务发明专利数为{{ iv.mainpatents }}项。
+            {% if iv.softwareindustry==1 %}
+            属于软件企业，不受专利数量条件限制。
+            {% elif iv.mainpatentrequirement==1 %}
+            达到《规定》对<b>主营业务发明专利数要求。</b>
+            {% else %}
+            未达到《规定》对<b>主营业务发明专利数要求。</b>
+            {% endif %}
+        </p>
+        <p class="success">
+            （四）最近3年营业收入复合增长率达到20%，或者最近一年营业收入金额达到3亿元。
+            {% if iv.incomerequriement==1 %}
+            <img src="data:image/jpeg;base64,{{ successimage }}"height="20" width="20"/>
+        </p>
+        <p style="margin-left: 2em;">
+            近3年营业收入复合增长率为{{ iv.increaserate*100 }}%;
+            最近一年营业收入金额为{{ iv.recentincome/10000|round(1) }}亿元;
+            <br>综合判断上述指标，
+            达到《规定》对<b>营业收入要求。</b>
+            {% else %}
+            <img src="data:image/jpeg;base64,{{ warningimage }}" height="20" width="20"/>
+            <p style="margin-left: 2em;">
+            近3年营业收入复合增长率为{{ iv.increaserate*100 }}%;
+            最近一年营业收入金额为{{ iv.recentincome/10000|round(1) }}亿元;
+            <br>综合判断上述指标，
+            未达到《规定》对<b>营业收入要求。</b>
+            {% endif %}</p>
+        </p>
+        <p>
+            {% if iv.fourqequirementstatus==1 %}
+            <b>{{ iv.companyname }}满足《规定》第五条中所有四项指标，具备科创板定位相关的科创属性。</b><img src="data:image/jpeg;base64,{{ successimage }}"height="20" width="20"/>
+            {% else %}
+            <b>{{ iv.companyname }}目前未满足《规定》第五条中所有四项指标要求。</b>
+            {% endif %}
+            {% if iv.strategic_ind==0 %}
+            <br><b style="font-size:17px;padding-left:1em;">*请注意，当前{{ iv.companyname }}所在行业领域与《规定》要求不符。</b><img src="data:image/jpeg;base64,{{ warningimage }}"height="20" width="20"/></p>
+            {% endif %}
+        </p>
+        <h3>3.3 五条指标要求</h3>
+        <div style="margin-top: 10px;">
+            <p>科创板优先支持符合国家科技创新战略、拥有关键核心技术等先进技术、科技创新能力突出、科技成果转化能力突出、行业地位突出或者市场认可度高等的科技创新企业发行上市。</p>
+            <p>对符合行业定位但未能同时满足3.2中4项指标要求的企业,《规定》鼓励和支持符合以下5种情形之一的企业申报科创版发行上市。</p>
+            <p class="success">（一）拥有的核心技术经国家主管部门认定具有国际领先、引领作用或者对于国家战略具有重大意义；</p>
+            <div style="margin-left: 2em;">参考附件，<a href="#sixteen">问卷16</a> </div>
+            <p class="success">（二）作为主要参与单位或者核心技术人员作为主要参与人员，获得国家自然科学奖、国家科技进步奖、国家技术发明奖，并将相关技术运用于主营业务；</p>
+            <p style="margin-left: 2em;">参考附件，<a href="#seventeen">问卷17</a></p>
+            <p class="success">（三）独立或者牵头承担与主营业务和核心技术相关的国家重大科技专项项目；</p>
+            <p style="margin-left: 2em;">参考附件，<a href="#eighteen">问卷18</a></p>
+            <p class="success">（四）依靠核心技术形成的主要产品（服务），属于国家鼓励、支持和推动的关键设备、关键产品、关键零部件、关键材料等，并实现了进口替代；</p>
+            <p style="margin-left: 2em;">参考附件，<a href="#nineteen">问卷19</a></p>
+            <p class="success">（五）形成核心技术和主营业务收入相关的发明专利（含国防专利）合计50项以上。</p>
+            <p style="margin-left: 2em;">参考附件，<a href="#twelve">问卷12</a></p>
+            <p style="margin-left: 2em;">{{ iv.companyname }}主营业务发明专利数为{{ iv.mainpatents }}项。</p>
+        </div>
+        <div style="margin-top: 50px">
+            <h3>附件：问卷</h3>
+            <h4>科技创新能力评估问卷</h4>
+            <div style="font-size: 15px">
+            <label>1. 企业名称</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.companyname }}</div>
+            <label>2. 所属行业</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.industry }}</div>
+            <label>3. 主营简介</label>
+            <div style="margin-top: 20px;padding:20px; border: 1px solid #DCDFE6; border-radius: 3px; color:#606266">{{ iv.business }}</div>
+            <label>4. 核心产品</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.coreproduct }}</div>
+            <label>5. 贵司近四年研发经费（万元）</label>
+            <div class="inner" style="margin: 10px 0">
+                {% for key,value in iv.researchinvest.items() %}
+                {{ key }}:{{ value }}；
+                {% endfor %}
+            </div>
+            <label>6. 贵司近四年营业收入（万元）</label>
+            <div class="inner" style="margin: 10px 0">
+                 {% for key,value in iv.income.items() %}
+                {{ key }}:{{ value }}；
+                {% endfor %}
+            </div>
+            <label>7. 贵司近三年净利润（万元）</label>
+            <div class="inner" style="margin: 10px 0">
+                  {% for key,value in iv.profit.items() %}
+                {{ key }}:{{ value }}；
+                {% endfor %}
+            </div>
+            <label>8. 贵司近三年研发人员数（万元）</label>
+            <div class="inner" style="margin: 10px 0">
+                 {% for key,value in iv.researcher.items() %}
+                {{ key }}:{{ value }}；
+                {% endfor %}
+            </div>
+            <label>9. 贵司近三年员工总数（万元）</label>
+            <div class="inner" style="margin: 10px 0">
+                 {% for key,value in iv.employees.items() %}
+                {{ key }}:{{ value }}；
+                {% endfor %}
+            </div>
+            <label>10. 发明专利申请数量</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.invention_patentumber }}</div>
+            <label>11. 总专利申请量</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.patentnumber }}</div>
+            <label><a name="twelve"></a>12. 企业拥有主营业务收入的发明专利（含国防专利）数量</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.mainpatents }}</div>
+            <label>13. 专利许可转让收入(万元)</label>
+            <div class="inner" style="margin: 10px 0">{{ iv.patentincome }}</div>
+            <label>14. 企业前五大客户罗列</label>
+            <div style="margin-top: 20px;padding:20px; border: 1px solid #DCDFE6; border-radius: 3px; color:#606266">
+                {% for value in iv.mainclients %}
+                {{ value }}；
+                {% endfor %}
+            </div>
+             <label>15. 前五大客户销售总额占当年销售额比值（%）</label>
+             <div class="inner" style="margin: 10px 0">{{ iv.mainclients_sales_ratio }}</div>
+             <label><a name="sixteen">16. 产品生产技术水平</a></label>
+            <div class="inner" style="margin: 10px 0">{{ iv.techlevel }}</div>
+             <label><a name="seventeen"></a>17. 所获奖项：运用与主营业务的技术，是否获得：（多选）</label>
+            <div style="margin-top: 20px;padding:20px; border: 1px solid #DCDFE6; border-radius: 3px; color:#606266">
+            {% for value in iv.techawardlevel %}
+                {{ value }}；
+                {% endfor %}
+            </div>
+             <label><a name="eighteen"></a>18. 重大项目：“国家重大科技专项”项目（行业罗列）（多选）</label>
+            {% for value in iv.mainprojects %}
+                {{ value }}；
+                {% endfor %}
+             <label><a name="nineteen"></a>19. 依靠核心技术形成的主要产品（服务），属于国家鼓励、支持和推动的关键设备、关键产品、关键零部件、关键材料等，并实现了进口替代。（请简要说明） </label>
+            <div style="margin-top: 20px;padding:20px; border: 1px solid #DCDFE6; border-radius: 3px; color:#606266">{{ iv.maintechdescription }}</div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<p align="middle">
-    <img src="data:image/jpeg;base64,{{ base64_data }}" height="300" width="600">
-</p>
-
 </body>
 </html>
