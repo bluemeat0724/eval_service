@@ -130,4 +130,4 @@ dmypy.json
 科技创新评估.xlsx
 api.md
 .idea
-.migrate
+.migrations
